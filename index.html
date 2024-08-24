@@ -18,10 +18,11 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            box-sizing: border-box;
         }
         header {
             text-align: center;
-            padding: 50px 0;
+            padding: 30px 0;
         }
         h1 {
             font-size: 4em;
@@ -49,39 +50,42 @@
         }
         .features {
             display: flex;
-            justify-content: space-around;
             flex-wrap: wrap;
+            justify-content: space-around;
             margin-top: 50px;
         }
         .feature {
-            flex-basis: 30%;
+            flex-basis: calc(33.333% - 20px);
             text-align: center;
             margin-bottom: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .feature h3 {
             color: #2c3e50;
         }
         .dialogue {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             margin: 50px auto;
-            max-width: 600px;
+            max-width: 800px;
         }
         .character {
-            text-align: center;
-            flex: 0 0 auto;
             display: flex;
-            flex-direction: column;
             align-items: center;
         }
         .character-left {
-            flex-direction: column-reverse;
+            flex-direction: row;
+        }
+        .character-right {
+            flex-direction: row-reverse;
         }
         .character-icon {
             width: 100px;
             height: 100px;
-            margin: 10px 0;
             background-size: cover;
             background-position: center;
         }
@@ -123,16 +127,16 @@
             border: 15px solid transparent;
         }
         .speech-bubble-left:before {
-            left: 50%;
-            bottom: 100%;
-            border-bottom-color: #ffffff;
-            margin-left: -15px;
+            right: 100%;
+            top: 50%;
+            border-right-color: #ffffff;
+            margin-top: -15px;
         }
         .speech-bubble-right:before {
-            left: 50%;
-            top: 100%;
-            border-top-color: #ffffff;
-            margin-left: -15px;
+            left: 100%;
+            top: 50%;
+            border-left-color: #ffffff;
+            margin-top: -15px;
         }
         .slogan {
             font-size: 1.2em;
@@ -148,6 +152,70 @@
             background-color: #e0e0e0;
             color: #2c3e50;
         }
+
+        @media (max-width: 900px) {
+            .feature {
+                flex-basis: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .dialogue {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .character {
+                margin-bottom: 20px;
+            }
+            .character-right {
+                align-self: flex-end;
+            }
+            .speech-bubble-left, .speech-bubble-right {
+                width: 200px;
+                height: auto;
+                min-height: 60px;
+            }
+            h1 {
+                font-size: 3em;
+            }
+            .subtitle {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .feature {
+                flex-basis: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .character-icon {
+                width: 80px;
+                height: 80px;
+            }
+            .character-icon-right {
+                width: 100px;
+                height: 100px;
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+            .subtitle {
+                font-size: 1em;
+            }
+            .cta-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+            .speech-bubble-left, .speech-bubble-right {
+                width: 180px;
+                margin: 10px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -159,16 +227,16 @@
         </header>
         <div class="dialogue">
             <div class="character character-left">
+                <div class="character-icon character-icon-left"></div>
                 <div class="speech-bubble speech-bubble-left">
                     <div class="slogan">What's KEK?</div>
                 </div>
-                <div class="character-icon character-icon-left"></div>
             </div>
-            <div class="character">
+            <div class="character character-right">
+                <div class="character-icon character-icon-right"></div>
                 <div class="speech-bubble speech-bubble-right">
                     <div class="slogan" id="slogan">KEK: Just LOL with extra steps</div>
                 </div>
-                <div class="character-icon character-icon-right"></div>
             </div>
         </div>
         <div class="features">
@@ -201,7 +269,7 @@
             "KEK is where memes become dreams",
             "KEK = LOL + 🐸 + 💎",
             "KEK is LOL that HODLs",
-            "KEK is what happens when wallets go brrr."
+            "KEK is what happens when wallets go brrr"
         ];
         let currentSlogan = 0;
         const sloganElement = document.getElementById('slogan');
