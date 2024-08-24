@@ -223,7 +223,7 @@
         <header>
             <h1>KEK Token</h1>
             <p class="subtitle">The Meme Coin That Makes You LOL and HODL</p>
-            <button class="cta-button">Get Your KEK Now</button>
+            <button class="cta-button" id="getKekButton">Get Your KEK Now</button>
         </header>
         <div class="dialogue">
             <div class="character character-left">
@@ -255,7 +255,7 @@
         </div>
         <footer>
             <p>Join the KEKolution! But remember, only invest what you can afford to lose (in memes).</p>
-            <button class="cta-button">Embrace the KEK Life Now</button>
+            <button class="cta-button" id="embraceKekButton">Embrace the KEK Life Now</button>
         </footer>
     </div>
 
@@ -267,23 +267,28 @@
             "KEK is LOL on financial steroids",
             "KEK is LOL 2.0 - Now with added HODL",
             "KEK is where memes become dreams",
-            "KEK = LOL + 🐸 + 💎",
-            "KEK is LOL that HODLs",
-            "KEK is what happens when wallets go brrr"
+            "KEK - Because LOL needed a coin"
         ];
-        let currentSlogan = 0;
-        const sloganElement = document.getElementById('slogan');
 
-        function changeSlogan() {
-            currentSlogan = (currentSlogan + 1) % slogans.length;
-            sloganElement.style.opacity = 0;
-            requestAnimationFrame(() => {
-                sloganElement.textContent = slogans[currentSlogan];
-                sloganElement.style.opacity = 1;
-            });
+        function getRandomSlogan() {
+            return slogans[Math.floor(Math.random() * slogans.length)];
         }
 
-        setInterval(changeSlogan, 3000);
+        function updateSlogan() {
+            const sloganElement = document.getElementById('slogan');
+            sloganElement.innerText = getRandomSlogan();
+        }
+
+        document.getElementById('getKekButton').addEventListener('click', function() {
+            window.location.href = 'https://t.me/gasPump_bot/app?startapp=eyJyZWZfdXNlcl9pZCI6MjQ2Njk1NSwidG9rZW5fYWRkcmVzcyI6IkVRQmFBZl93QTU4Rkg0bVBPRnBwZ3M3bm5ObmVGXy04XzNONG5QZXJKOWxwb3RrRyJ9';
+        });
+
+        document.getElementById('embraceKekButton').addEventListener('click', function() {
+            window.location.href = 'https://t.me/gasPump_bot/app?startapp=eyJyZWZfdXNlcl9pZCI6MjQ2Njk1NSwidG9rZW5fYWRkcmVzcyI6IkVRQmFBZl93QTU4Rkg0bVBPRnBwZ3M3bm5ObmVGXy04XzNONG5QZXJKOWxwb3RrRyJ9';  
+        });
+
+        // Обновляем слоган через 5 секунд после загрузки страницы
+        setTimeout(updateSlogan, 5000);
     </script>
 </body>
 </html>
